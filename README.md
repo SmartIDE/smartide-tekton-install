@@ -8,7 +8,7 @@
 Tekton API Server
 
 ```shell
-kubectl apply --filename tekton-release-v0.32.0.yaml
+kubectl apply --filename v0.32.0/smartide-tekton-release.yaml
 ```
 
 CLI
@@ -20,14 +20,18 @@ Brew原生安装方式，可能被墙
 brew install tektoncd-cli
 ```
 
-或者直接把cli-installer目录下的文件解压缩放入可执行文件路径即可。
+cli安装包已经复制到dlsmartide存储账号
+
+- Mac https://smartidedl.blob.core.chinacloudapi.cn/tekton/cli/v0.21.0/tkn_0.21.0_Darwin_x86_64.tar.gz
+- Windows https://smartidedl.blob.core.chinacloudapi.cn/tekton/cli/v0.21.0/tkn_0.21.0_Windows_x86_64.zip
+- Linux https://smartidedl.blob.core.chinacloudapi.cn/tekton/cli/v0.21.0/tkn_0.21.0_Linux_x86_64.tar.gz 
 
 
 Tekton Dashboard
 
 ```shell
 ## 安装
-kubectl apply -f tekton-dashboard-release-v0.23.0.yaml
+kubectl apply -f v0.32.0/smartide-tekton-dashboard-release.yaml
 ## 端口转发
 kubectl --namespace tekton-pipelines port-forward svc/tekton-dashboard 9097:9097
 ## 打开 http://localhost:9097
