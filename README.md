@@ -13,11 +13,16 @@ kubectl apply --filename v0.32.0/smartide-tekton-release.yaml
 
 CLI
 
-Brew原生安装方式，可能被墙
+原生安装方式，可能被墙，参考 https://tekton.dev/docs/cli/
 
 ```shell
 ## MacOS
 brew install tektoncd-cli
+## Linux
+sudo apt update;sudo apt install -y gnupg
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3EFE0E0A2F2F60AA
+echo "deb http://ppa.launchpad.net/tektoncd/cli/ubuntu eoan main"|sudo tee /etc/apt/sources.list.d/tektoncd-ubuntu-cli.list
+sudo apt update && sudo apt install -y tektoncd-cli
 ```
 
 cli安装包已经复制到dlsmartide存储账号
