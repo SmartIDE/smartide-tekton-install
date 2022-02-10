@@ -8,7 +8,7 @@
 1. Tekton API Server
 
 ```shell
-kubectl apply --filename pipeline/v0.23.0/smartide-tekton-release.yaml
+kubectl apply --filename pipeline/v0.32.0/smartide-tekton-release.yaml
 ```
 
 CLI
@@ -36,7 +36,7 @@ cli安装包已经复制到dlsmartide存储账号
 
 ```shell
 ## 安装
-kubectl apply -f dashboard/v0.23.0/smartide-tekton-dashboard-release.yaml
+kubectl apply -f dashboard/v0.32.0/smartide-tekton-dashboard-release.yaml
 ## 端口转发
 kubectl --namespace tekton-pipelines port-forward svc/tekton-dashboard 9097:9097
 ## 打开 http://localhost:9097
