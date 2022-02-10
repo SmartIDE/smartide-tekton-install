@@ -5,10 +5,10 @@
 
 ## 安装脚本
 
-Tekton API Server
+1. Tekton API Server
 
 ```shell
-kubectl apply --filename v0.32.0/smartide-tekton-release.yaml
+kubectl apply --filename pipeline/smartide-tekton-release.yaml
 ```
 
 CLI
@@ -32,16 +32,27 @@ cli安装包已经复制到dlsmartide存储账号
 - Linux https://smartidedl.blob.core.chinacloudapi.cn/tekton/cli/v0.21.0/tkn_0.21.0_Linux_x86_64.tar.gz 
 
 
-Tekton Dashboard
+2. Tekton Dashboard
 
 ```shell
 ## 安装
-kubectl apply -f v0.32.0/smartide-tekton-dashboard-release.yaml
+kubectl apply -f dashboard/smartide-tekton-dashboard-release.yaml
 ## 端口转发
 kubectl --namespace tekton-pipelines port-forward svc/tekton-dashboard 9097:9097
 ## 打开 http://localhost:9097
 ```
 
+3. Trigger
+
+```shell
+## 安装
+kubectl apply -f trigger/smartide-release.yaml
+kubectl apply -f trigger/smartide-interceptor.yaml
+
+## 端口转发
+kubectl --namespace tekton-pipelines port-forward svc/tekton-dashboard 9097:9097
+## 打开 http://localhost:9097
+```
 
 ## 测试Tekton可以正常工作
 
