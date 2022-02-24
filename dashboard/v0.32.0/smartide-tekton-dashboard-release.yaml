@@ -302,7 +302,7 @@ metadata:
 spec:
   type: LoadBalancer
   externalIPs:
-    - 172.17.0.1
+    - 20.212.31.106
   ports:
     - name: http
       port: 9097
