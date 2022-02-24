@@ -301,6 +301,8 @@ metadata:
   namespace: tekton-pipelines
 spec:
   type: LoadBalancer
+  externalIPs:
+    - 10.0.0.4
   ports:
     - name: http
       port: 9097
