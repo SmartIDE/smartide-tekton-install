@@ -1930,9 +1930,6 @@ metadata:
   name: tekton-pipelines-controller
   namespace: tekton-pipelines
 spec:
-  type: LoadBalancer
-  # 替换为服务器ip
-  loadBalancerIP: 20.212.31.106
   ports:
     - name: http-metrics
       port: 9090

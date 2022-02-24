@@ -302,7 +302,7 @@ metadata:
 spec:
   type: LoadBalancer
   # 替换为服务器ip
-  loadBalancerIP: 20.212.31.106
+  loadBalancerIP: 10.0.0.4
   ports:
     - name: http
       port: 9097
