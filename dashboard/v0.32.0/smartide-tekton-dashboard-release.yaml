@@ -300,6 +300,7 @@ metadata:
   name: tekton-dashboard
   namespace: tekton-pipelines
 spec:
+  type: LoadBalancer
   ports:
     - name: http
       port: 9097
