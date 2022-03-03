@@ -60,7 +60,7 @@ kubectl apply -f trigger/v0.18.0/smartide-interceptor.yaml
 ## 获取到trigger的 service 名称
 kubectl get svc|grep listener
 ## 端口转发
-kubectl port-forward service/el-${EVENTLISTENER_NAME} 8080
+kubectl port-forward service/el-${EVENTLISTENER_NAME} 8080:9090
 ## 使用trigger触发流水线示例，注意 -d 需要根据对应的流水线参数进行修改
 curl -X POST \
   http://localhost:8080 \
