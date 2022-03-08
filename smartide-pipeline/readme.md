@@ -9,7 +9,7 @@ kubectl apply -f ./aliyun/trigger-event-listener.yaml
 
 # build 版本 kubectl apply -f ./aliyun/task-smartide-cli-build.yaml
 # release 版本 kubectl apply -f ./aliyun/task-smartide-cli-release.yaml
-kubectl apply -f ./aliyun/task-smartide-cli.yaml
+kubectl apply -f ./aliyun/task-smartide-cli-dev.yaml
 kubectl apply -f ./aliyun/pipeline-smartide-cli.yaml
 ```
 
@@ -23,6 +23,6 @@ kubectl apply -f ./dockerhub/trigger-event-listener.yaml
 
 # build 版本 kubectl apply -f ./dockerhub/task-smartide-cli-build.yaml
 # release 版本 kubectl apply -f ./dockerhub/task-smartide-cli-release.yaml
-kubectl apply -f ./dockerhub/task-smartide-cli.yaml
+kubectl apply -f ./dockerhub/task-smartide-cli-dev.yaml
 kubectl apply -f ./dockerhub/pipeline-smartide-cli.yaml
 ```
