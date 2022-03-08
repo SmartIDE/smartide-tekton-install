@@ -6,7 +6,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /$1
 spec:
   rules:
-    - host: el-trigger-listener-smartide-cli-dev.smartide.com
+    - host: minikube
       http:
         paths:
           - path: /
