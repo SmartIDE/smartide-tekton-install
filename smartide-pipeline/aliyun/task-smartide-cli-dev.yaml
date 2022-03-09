@@ -66,9 +66,7 @@ spec:
 
         echo "hello smartide"
 
-        se version
-
-        
+        se version      
 
         if [ "$(params.COMMAND)" == "start" ]; then 
            echo "smartide $(params.COMMAND) running"
