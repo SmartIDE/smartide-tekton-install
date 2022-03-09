@@ -74,7 +74,7 @@ spec:
         else 
            echo "smartide $(params.COMMAND) $(params.SERVER_WORK_SPACE_NO) running"
            se login '$(params.SERVER_LOGIN_URL)' --username '$(params.SERVER_USER_NAME)' --password '$(params.SERVER_TOKEN)'           
-           se $(params.COMMAND) $(params.SERVER_WORK_SPACE_NO) --debug --mode server --serverworkspaceid '$(params.SERVER_WORK_SPACE_ID)'
+           se $(params.COMMAND) $(params.SERVER_WORK_SPACE_NO) --debug --mode server --serverworkspaceid '$(params.SERVER_WORK_SPACE_ID)' --serverusername '$(params.SERVER_USER_NAME)' --serveruserguid '$(params.SERVER_USER_GUID)' --serverfeedback '$(params.SERVER_FEEDBACK)' --servertoken '$(params.SERVER_TOKEN)'
         fi
 
         echo "end"

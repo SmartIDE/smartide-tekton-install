@@ -33,6 +33,10 @@ spec:
       description: 服务端工作区ID
       type: string
       default:   
+    - name: SERVER_WORK_SPACE_NO
+      description: 服务端工作区NO
+      type: string
+      default:   
     - name: SERVER_USER_NAME
       description: 服务端用户名
       type: string
@@ -56,19 +60,21 @@ spec:
 
   steps:
     - name: smartide-cli
-      image: registry.cn-hangzhou.aliyuncs.com/smartide/smartide-cli:release
+      image: registry.cn-hangzhou.aliyuncs.com/smartide/smartide-cli:2358
       script: |
         #!/bin/bash
 
         echo "hello smartide"
 
-        se version
+        se version      
 
         if [ "$(params.COMMAND)" == "start" ]; then 
+           echo "smartide $(params.COMMAND) running"
            se start --debug --mode server --host '$(params.HOST)' --username '$(params.SSH_USER_NAME)' --password '$(params.SSH_USER_PASSWORD)' --repourl '$(params.GIT_CLONE_URL)' --serverworkspaceid '$(params.SERVER_WORK_SPACE_ID)' --serverusername '$(params.SERVER_USER_NAME)' --serveruserguid '$(params.SERVER_USER_GUID)' --serverfeedback '$(params.SERVER_FEEDBACK)' --servertoken '$(params.SERVER_TOKEN)'  
         else 
-           se login --loginurl '$(params.SERVER_LOGIN_URL)' --username '$(params.SERVER_USER_NAME)' --password '$(params.SERVER_TOKEN)'  
-           se $(params.COMMAND) --debug --mode server --serverworkspaceid '$(params.SERVER_WORK_SPACE_ID)'
+           echo "smartide $(params.COMMAND) $(params.SERVER_WORK_SPACE_NO) running"
+           se login '$(params.SERVER_LOGIN_URL)' --username '$(params.SERVER_USER_NAME)' --password '$(params.SERVER_TOKEN)'           
+           se $(params.COMMAND) $(params.SERVER_WORK_SPACE_NO) --debug --mode server --serverworkspaceid '$(params.SERVER_WORK_SPACE_ID)' --serverusername '$(params.SERVER_USER_NAME)' --serveruserguid '$(params.SERVER_USER_GUID)' --serverfeedback '$(params.SERVER_FEEDBACK)' --servertoken '$(params.SERVER_TOKEN)'
         fi
 
         echo "end"
