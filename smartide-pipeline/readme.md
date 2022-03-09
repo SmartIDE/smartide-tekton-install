@@ -26,3 +26,7 @@ kubectl apply -f ./dockerhub/trigger-event-listener.yaml
 kubectl apply -f ./dockerhub/task-smartide-cli-dev.yaml
 kubectl apply -f ./dockerhub/pipeline-smartide-cli.yaml
 ```
+
+## TODO
+1. trigger.yaml、trigger-template.yaml、trigger-binding.yaml、trigger-event-listener.yaml、pipeline-smartide-cli.yaml 是重复的
+2. task-smartide-cli-***.yaml 文件中，除了image不同，其他都是相同的
