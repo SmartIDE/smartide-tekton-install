@@ -4,6 +4,9 @@ metadata:
   name: pipeline-template-smartide-cli
 spec:
   params:
+  - name: COMMAND
+    description: smartide command
+    default: 
   - name: HOST
     description: SSH host
     default: 
@@ -23,12 +26,18 @@ spec:
   - name: SERVER_WORK_SPACE_ID
     description: 服务端工作区ID
     default:   
+  - name: SERVER_WORK_SPACE_NO
+    description: 服务端工作区NO
+    default:   
   - name: SERVER_USER_NAME
     description: 服务端用户名
     default:   
   - name: SERVER_USER_GUID
     description: 服务端用户GUID
-    default:   
+    default:  
+  - name: SERVER_LOGIN_URL
+    description: server 登录地址
+    default: 
   - name: SERVER_FEEDBACK
     description: 服务端反馈URL
     default:   
@@ -45,6 +54,8 @@ spec:
       pipelineRef:
         name: pipeline-smartide-cli
       params:
+      - name: COMMAND
+        value: $(tt.params.COMMAND)
       - name: HOST
         value: $(tt.params.HOST)
       - name: SSH_USER_NAME
@@ -56,10 +67,14 @@ spec:
 
       - name: SERVER_WORK_SPACE_ID
         value: $(tt.params.SERVER_WORK_SPACE_ID)
+      - name: SERVER_WORK_SPACE_NO
+        value: $(tt.params.SERVER_WORK_SPACE_NO)
       - name: SERVER_USER_NAME
         value: $(tt.params.SERVER_USER_NAME)
       - name: SERVER_USER_GUID
         value: $(tt.params.SERVER_USER_GUID)
+      - name: SERVER_LOGIN_URL
+        value: $(tt.params.SERVER_LOGIN_URL)
       - name: SERVER_FEEDBACK
         value: $(tt.params.SERVER_FEEDBACK)
       - name: SERVER_TOKEN
