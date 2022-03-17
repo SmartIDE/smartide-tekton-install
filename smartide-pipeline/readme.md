@@ -1,7 +1,15 @@
+<!--
+ * @Date: 2022-03-10 10:48:37
+ * @LastEditors: Jason Chen
+ * @LastEditTime: 2022-03-17 11:21:41
+ * @FilePath: /smartide-tekton-install/smartide-pipeline/readme.md
+-->
 
 ## 阿里云版tekton配置
 
 ``` bash
+cd smartide-pipeline
+
 kubectl apply -f ./aliyun/trigger.yaml
 kubectl apply -f ./aliyun/trigger-template.yaml
 kubectl apply -f ./aliyun/trigger-binding.yaml
@@ -16,6 +24,8 @@ kubectl apply -f ./aliyun/pipeline-smartide-cli.yaml
 
 ## Docker Hub版tekton配置
 ``` bash
+cd smartide-pipeline
+
 kubectl apply -f ./dockerhub/trigger.yaml
 kubectl apply -f ./dockerhub/trigger-template.yaml
 kubectl apply -f ./dockerhub/trigger-binding.yaml
