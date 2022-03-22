@@ -41,14 +41,10 @@ spec:
       description: 服务端用户GUID
       type: string
       default:   
-    - name: SERVER_LOGIN_URL
+    - name: SERVER_HOST
       description: server 登录地址
       type: string
       default: 
-    - name: SERVER_FEEDBACK
-      description: 服务端反馈URL
-      type: string
-      default:   
     - name: SERVER_TOKEN
       description: 服务端TOKEN
       type: string
@@ -79,9 +75,7 @@ spec:
           value: $(params.SERVER_USER_NAME)
         - name: SERVER_USER_GUID
           value: $(params.SERVER_USER_GUID)
-        - name: SERVER_LOGIN_URL
-          value: $(params.SERVER_LOGIN_URL)
-        - name: SERVER_FEEDBACK
-          value: $(params.SERVER_FEEDBACK)
+        - name: SERVER_HOST
+          value: $(params.SERVER_HOST)
         - name: SERVER_TOKEN
           value: $(params.SERVER_TOKEN)

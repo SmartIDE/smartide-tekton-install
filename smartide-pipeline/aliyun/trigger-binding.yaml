@@ -27,9 +27,7 @@ spec:
     value: $(body.SERVER_USER_NAME)
   - name: SERVER_USER_GUID
     value: $(body.SERVER_USER_GUID)
-  - name: SERVER_FEEDBACK
-    value: $(body.SERVER_FEEDBACK)
-  - name: SERVER_LOGIN_URL
-    value: $(body.SERVER_LOGIN_URL)
+  - name: SERVER_HOST
+    value: $(body.SERVER_HOST)
   - name: SERVER_TOKEN
     value: $(body.SERVER_TOKEN)

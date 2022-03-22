@@ -35,12 +35,9 @@ spec:
   - name: SERVER_USER_GUID
     description: 服务端用户GUID
     default:  
-  - name: SERVER_LOGIN_URL
+  - name: SERVER_HOST
     description: server 登录地址
     default: 
-  - name: SERVER_FEEDBACK
-    description: 服务端反馈URL
-    default:   
   - name: SERVER_TOKEN
     description: 服务端TOKEN
     default: 
@@ -73,9 +70,7 @@ spec:
         value: $(tt.params.SERVER_USER_NAME)
       - name: SERVER_USER_GUID
         value: $(tt.params.SERVER_USER_GUID)
-      - name: SERVER_LOGIN_URL
-        value: $(tt.params.SERVER_LOGIN_URL)
-      - name: SERVER_FEEDBACK
-        value: $(tt.params.SERVER_FEEDBACK)
+      - name: SERVER_HOST
+        value: $(tt.params.SERVER_HOST)
       - name: SERVER_TOKEN
         value: $(tt.params.SERVER_TOKEN)
