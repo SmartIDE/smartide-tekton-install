@@ -7,6 +7,9 @@ spec:
   - name: COMMAND
     description: smartide command
     default: 
+  - name: ARGS
+    description: command args
+    default: 
   - name: HOST
     description: SSH host
     default: 
@@ -53,6 +56,8 @@ spec:
       params:
       - name: COMMAND
         value: $(tt.params.COMMAND)
+      - name: ARGS
+        value: $(tt.params.ARGS)
       - name: HOST
         value: $(tt.params.HOST)
       - name: SSH_USER_NAME

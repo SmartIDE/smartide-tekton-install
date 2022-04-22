@@ -56,7 +56,7 @@ spec:
 
   steps:
     - name: smartide-cli
-      image: registry.cn-hangzhou.aliyuncs.com/smartide/smartide-cli:3169
+      image: smartide/smartide-cli:3169
       script: |
         #!/bin/bash
 
@@ -68,6 +68,9 @@ spec:
         if [ "$(params.COMMAND)" == "start" ]; then 
           echo "smartide start running"
           se start --debug --mode server --host '$(params.HOST)' --username '$(params.SSH_USER_NAME)' --password '$(params.SSH_USER_PASSWORD)' --repourl '$(params.GIT_CLONE_URL)' --serverhost '$(params.SERVER_HOST)' --serverworkspaceid '$(params.SERVER_WORK_SPACE_ID)' --serverusername '$(params.SERVER_USER_NAME)' --servertoken '$(params.SERVER_TOKEN)'  
+        elif [ "$(params.COMMAND)" == "new" ]; then 
+          echo "smartide new running"
+          se new $(params.ARGS) --debug --mode server --host '$(params.HOST)' --username '$(params.SSH_USER_NAME)' --password '$(params.SSH_USER_PASSWORD)' --repourl '$(params.GIT_CLONE_URL)' --serverhost '$(params.SERVER_HOST)' --serverworkspaceid '$(params.SERVER_WORK_SPACE_ID)' --serverusername '$(params.SERVER_USER_NAME)' --servertoken '$(params.SERVER_TOKEN)'  
         else
           echo "smartide $(params.COMMAND) $(params.SERVER_WORK_SPACE_NO) running"
 

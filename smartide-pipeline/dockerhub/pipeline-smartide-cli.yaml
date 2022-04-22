@@ -8,6 +8,10 @@ spec:
       description: smartide command
       type: string
       default: 
+    - name: ARGS
+      description: command args
+      type: string
+      default: 
     - name: HOST
       description: SSH host
       type: string
