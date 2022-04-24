@@ -62,6 +62,8 @@ spec:
       params:
         - name: COMMAND
           value: $(params.COMMAND)
+        - name: ARGS
+          value: $(params.ARGS)
         - name: HOST
           value: $(params.HOST)
         - name: SSH_USER_NAME

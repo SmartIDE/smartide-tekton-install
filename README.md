@@ -1,3 +1,9 @@
+<!--
+ * @Date: 2022-03-10 10:48:37
+ * @LastEditors: Jason Chen
+ * @LastEditTime: 2022-04-24 11:14:15
+ * @FilePath: /smartide-tekton-install/README.md
+-->
 # Tekton 本地化部署
 
 本代码库提供了Tekton本地部署优化的脚本，所有镜像已经导入阿里云镜像仓库，不再依赖墙外资源。
@@ -60,7 +66,7 @@ kubectl apply -f trigger/v0.18.0/smartide-interceptor.yaml
 ## 获取到trigger的 service 名称
 kubectl get svc|grep listener
 ## 端口转发
-kubectl port-forward service/el-${EVENTLISTENER_NAME} 8080:9090
+kubectl port-forward service/el-${EVENTLISTENER_NAME} 9090:8080 --address 0.0.0.0 &
 ## 使用trigger触发流水线示例，注意 -d 需要根据对应的流水线参数进行修改
 curl -X POST \
   http://localhost:8080 \
