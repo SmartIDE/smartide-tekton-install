@@ -60,14 +60,13 @@ spec:
 
   steps:
     - name: smartide-cli
-      image: registry.cn-hangzhou.aliyuncs.com/smartide/smartide-cli:3296
+      image: registry.cn-hangzhou.aliyuncs.com/smartide/smartide-cli:3307
       script: |
         #!/bin/bash
 
         echo "hello smartide"
 
-        se version      
-
+        se version
 
         if [ "$(params.COMMAND)" == "start" ]; then 
           echo "smartide start running"
