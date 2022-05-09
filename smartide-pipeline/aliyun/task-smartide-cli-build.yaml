@@ -68,9 +68,10 @@ spec:
 
         se version
 
+
         if [ "$(params.COMMAND)" == "start" ]; then 
           echo "smartide start running"
-          se start --debug --mode server --host '$(params.HOST)' --username '$(params.SSH_USER_NAME)' --password '$(params.SSH_USER_PASSWORD)' --repourl '$(params.GIT_CLONE_URL)' --serverhost '$(params.SERVER_HOST)' --serverworkspaceid '$(params.SERVER_WORK_SPACE_ID)' --serverusername '$(params.SERVER_USER_NAME)' --servertoken '$(params.SERVER_TOKEN)'  
+          se start $(params.ARGS) --debug --mode server --host '$(params.HOST)' --username '$(params.SSH_USER_NAME)' --password '$(params.SSH_USER_PASSWORD)' --repourl '$(params.GIT_CLONE_URL)' --serverhost '$(params.SERVER_HOST)' --serverworkspaceid '$(params.SERVER_WORK_SPACE_ID)' --serverusername '$(params.SERVER_USER_NAME)' --servertoken '$(params.SERVER_TOKEN)'  
         elif [ "$(params.COMMAND)" == "new" ]; then 
           echo "smartide new running"
           echo "se new $(params.ARGS) --debug --mode server --host '$(params.HOST)' --username '$(params.SSH_USER_NAME)' --password '$(params.SSH_USER_PASSWORD)' --serverhost '$(params.SERVER_HOST)' --serverworkspaceid '$(params.SERVER_WORK_SPACE_ID)' --serverusername '$(params.SERVER_USER_NAME)' --servertoken '$(params.SERVER_TOKEN)' "
@@ -79,11 +80,11 @@ spec:
           echo "smartide $(params.COMMAND) $(params.SERVER_WORK_SPACE_NO) running"
 
           if [ "$(params.COMMAND)" == "stop" ]; then
-            se $(params.COMMAND) $(params.SERVER_WORK_SPACE_NO) --debug --mode server --serverhost '$(params.SERVER_HOST)' --serverworkspaceid '$(params.SERVER_WORK_SPACE_ID)' --serverusername '$(params.SERVER_USER_NAME)' --servertoken '$(params.SERVER_TOKEN)'
+            se $(params.COMMAND) $(params.ARGS) $(params.SERVER_WORK_SPACE_NO) --debug --mode server --serverhost '$(params.SERVER_HOST)' --serverworkspaceid '$(params.SERVER_WORK_SPACE_ID)' --serverusername '$(params.SERVER_USER_NAME)' --servertoken '$(params.SERVER_TOKEN)'
           elif [ "$(params.COMMAND)" == "remove" ]; then   
-            se $(params.COMMAND) $(params.SERVER_WORK_SPACE_NO) -pyfi --debug --mode server --serverhost '$(params.SERVER_HOST)' --serverworkspaceid '$(params.SERVER_WORK_SPACE_ID)' --serverusername '$(params.SERVER_USER_NAME)' --servertoken '$(params.SERVER_TOKEN)'
+            se $(params.COMMAND) $(params.ARGS) $(params.SERVER_WORK_SPACE_NO) -pyfi --debug --mode server --serverhost '$(params.SERVER_HOST)' --serverworkspaceid '$(params.SERVER_WORK_SPACE_ID)' --serverusername '$(params.SERVER_USER_NAME)' --servertoken '$(params.SERVER_TOKEN)'
           elif [ "$(params.COMMAND)" == "remove_container" ]; then   
-            se remove $(params.SERVER_WORK_SPACE_NO) -y -c --debug --mode server --serverhost '$(params.SERVER_HOST)' --serverworkspaceid '$(params.SERVER_WORK_SPACE_ID)' --serverusername '$(params.SERVER_USER_NAME)' --servertoken '$(params.SERVER_TOKEN)'
+            se remove $(params.SERVER_WORK_SPACE_NO) $(params.ARGS) -y -c --debug --mode server --serverhost '$(params.SERVER_HOST)' --serverworkspaceid '$(params.SERVER_WORK_SPACE_ID)' --serverusername '$(params.SERVER_USER_NAME)' --servertoken '$(params.SERVER_TOKEN)'
           else
             echo "未知的命令！"
           fi
