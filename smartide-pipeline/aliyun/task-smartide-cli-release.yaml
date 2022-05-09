@@ -12,6 +12,10 @@ spec:
       description: smartide command
       type: string
       default: 
+    - name: ARGS
+      description: command args
+      type: string
+      default: 
     - name: HOST
       description: SSH host
       type: string
@@ -56,13 +60,13 @@ spec:
 
   steps:
     - name: smartide-cli
-      image: smartide/smartide-cli:3330
+      image: registry.cn-hangzhou.aliyuncs.com/smartide/smartide-cli:3330
       script: |
         #!/bin/bash
 
         echo "hello smartide"
 
-        se version      
+        se version
 
 
         if [ "$(params.COMMAND)" == "start" ]; then 

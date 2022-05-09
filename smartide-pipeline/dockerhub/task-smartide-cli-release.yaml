@@ -12,6 +12,10 @@ spec:
       description: smartide command
       type: string
       default: 
+    - name: ARGS
+      description: command args
+      type: string
+      default: 
     - name: HOST
       description: SSH host
       type: string
@@ -62,7 +66,7 @@ spec:
 
         echo "hello smartide"
 
-        se version      
+        se version
 
 
         if [ "$(params.COMMAND)" == "start" ]; then 
