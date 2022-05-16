@@ -60,7 +60,7 @@ spec:
 
   steps:
     - name: smartide-cli
-      image: registry.cn-hangzhou.aliyuncs.com/smartide/smartide-cli:3335
+      image: registry.cn-hangzhou.aliyuncs.com/smartide/smartide-cli:3468
       script: |
         #!/bin/bash
 
@@ -71,7 +71,7 @@ spec:
 
         if [ "$(params.COMMAND)" == "start" ]; then 
           echo "smartide start running"
-          se start $(params.ARGS) --debug --mode server --host '$(params.HOST)' --username '$(params.SSH_USER_NAME)' --password '$(params.SSH_USER_PASSWORD)' --repourl '$(params.GIT_CLONE_URL)' --serverhost '$(params.SERVER_HOST)' --serverworkspaceid '$(params.SERVER_WORK_SPACE_ID)' --serverusername '$(params.SERVER_USER_NAME)' --servertoken '$(params.SERVER_TOKEN)' --serveruserguid '$(params.SERVER_USER_GUID)'
+          se start $(params.ARGS) --debug --mode server --host '$(params.HOST)' --username '$(params.SSH_USER_NAME)' --password '$(params.SSH_USER_PASSWORD)' --repourl '$(params.GIT_CLONE_URL)' --serverhost '$(params.SERVER_HOST)' --serverworkspaceid '$(params.SERVER_WORK_SPACE_ID)' --serverusername '$(params.SERVER_USER_NAME)' --servertoken '$(params.SERVER_TOKEN)' --serverownerguid '$(params.SERVER_USER_GUID)'
         elif [ "$(params.COMMAND)" == "new" ]; then 
           echo "smartide new running"
           echo "se new $(params.ARGS) --debug --mode server --host '$(params.HOST)' --username '$(params.SSH_USER_NAME)' --password '$(params.SSH_USER_PASSWORD)' --serverhost '$(params.SERVER_HOST)' --serverworkspaceid '$(params.SERVER_WORK_SPACE_ID)' --serverusername '$(params.SERVER_USER_NAME)' --servertoken '$(params.SERVER_TOKEN)' "
