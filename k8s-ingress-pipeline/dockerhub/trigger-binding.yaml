@@ -1,0 +1,22 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerBinding
+metadata:
+  name: pipeline-binding-k8s-ingress
+spec:
+  params:
+  - name: CLUSTER
+    value: $(body.CLUSTER)
+  - name: NAMESPACE
+    value: $(body.NAMESPACE)
+  - name: USERNAME
+    value: $(body.USERNAME)
+  - name: PASSWORD
+    value: $(body.PASSWORD)
+  - name: EXTERNALPORT
+    value: $(body.EXTERNALPORT)
+  - name: SERVICE
+    value: $(body.SERVICE)
+  - name: INTERNALPORT
+    value: $(body.INTERNALPORT)
+  - name: KUBECONFIG
+    value: $(body.KUBECONFIG)

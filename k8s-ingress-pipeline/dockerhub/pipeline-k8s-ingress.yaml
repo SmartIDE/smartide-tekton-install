@@ -1,0 +1,61 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: pipeline-k8s-ingress
+spec:
+  params:
+    - name: CLUSTER
+      description: the k8s cluster name (ws-xxx)
+      type: string
+      default: "ws"
+    - name: NAMESPACE
+      description: the namespace of ingress
+      type: string
+      default: "default"
+    - name: USERNAME
+      description: the ingress basic auth username
+      type: string
+      default: 
+    - name: PASSWORD
+      description: the ingress basic auth password
+      type: string
+      default: 
+    - name: EXTERNALPORT
+      description: the ingress external port
+      type: string
+      default:
+    - name: SERVICE
+      description: the ingress service name
+      type: string
+      default: 
+    - name: INTERNALPORT
+      description: the ingress internal port
+      type: string
+      default:
+    - name: KUBECONFIG
+      description: the k8s cluster config
+      type: string
+      default:
+
+  tasks:
+    - name: k8s-ingress
+      taskRef:
+        name: task-k8s-ingress
+
+      params:
+        - name: CLUSTER
+          value: $(params.CLUSTER)
+        - name: NAMESPACE
+          value: $(params.NAMESPACE)
+        - name: USERNAME
+          value: $(params.USERNAME)
+        - name: PASSWORD
+          value: $(params.PASSWORD)
+        - name: EXTERNALPORT
+          value: $(params.EXTERNALPORT)
+        - name: SERVICE
+          value: $(params.SERVICE)
+        - name: INTERNALPORT
+          value: $(params.INTERNALPORT)
+        - name: KUBECONFIG
+          value: $(params.KUBECONFIG)

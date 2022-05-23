@@ -1,0 +1,95 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: task-k8s-ingress
+
+spec:
+  description: >-
+    Use this task to apply k8s ingress
+
+  params:
+    - name: CLUSTER
+      description: the k8s cluster name (ws-xxx)
+      type: string
+      default: "ws"
+    - name: NAMESPACE
+      description: the namespace of ingress
+      type: string
+      default: "default"
+    - name: USERNAME
+      description: the ingress basic auth username
+      type: string
+      default: 
+    - name: PASSWORD
+      description: the ingress basic auth password
+      type: string
+      default: 
+    - name: EXTERNALPORT
+      description: the ingress external port
+      type: string
+      default:
+    - name: SERVICE
+      description: the ingress service name
+      type: string
+      default: 
+    - name: INTERNALPORT
+      description: the ingress internal port
+      type: string
+      default:
+    - name: KUBECONFIG
+      description: the k8s cluster config
+      type: string
+      default:
+
+  steps:
+    - name: k8s-ingress
+      image: registry.cn-hangzhou.aliyuncs.com/smartide/smartide-tekton-ingress:1
+      script: |
+        #!/bin/bash
+        echo "------- k8s ingress apply start -------"
+        kubectl version
+        echo "[kubeconfig] write kubeconfig file"
+        echo "$(params.KUBECONFIG)" >> ./config
+        echo "[kubeconfig] content:"
+        cat ./config
+        echo "[secret] htpasswd create secret"
+        htpasswd -b -c auth $(params.USERNAME) $(params.PASSWORD)
+        cat auth
+        echo "[secret] kubectl apply secret"
+        echo "[bash] kubectl create secret generic basic-auth --from-file=auth -n $(params.NAMESPACE) --kubeconfig=./config"
+        kubectl create secret generic basic-auth --from-file=auth -n $(params.NAMESPACE) --kubeconfig=./config
+
+        echo "[ingress] create ingress file"
+        echo "apiVersion: networking.k8s.io/v1
+        kind: Ingress
+        metadata:
+          name: ingress-$(params.EXTERNALPORT)
+          namespace: $(params.NAMESPACE)
+          annotations:
+            nginx.ingress.kubernetes.io/auth-type: basic
+            nginx.ingress.kubernetes.io/auth-secret: basic-auth
+            nginx.ingress.kubernetes.io/use-regex: \"true\"
+            cert-manager.io/cluster-issuer: letsencrypt
+        spec:
+          ingressClassName: nginx
+          tls:
+          - hosts:
+            - $(params.NAMESPACE)-p$(params.EXTERNALPORT).$(params.CLUSTER).smartide.cn
+            secretName: $(params.NAMESPACE)-p$(params.EXTERNALPORT)
+          rules:
+          - host: $(params.NAMESPACE)-p$(params.EXTERNALPORT).$(params.CLUSTER).smartide.cn
+            http:
+              paths:
+              - path: /
+                pathType: Prefix
+                backend:
+                  service:
+                    name: $(params.SERVICE)
+                    port: 
+                      number: $(params.INTERNALPORT)" >> ingress.yaml
+        cat ingress.yaml
+        echo "[ingress] kubectl apply ingress"
+        echo "[bash] kubectl apply -f ingress.yaml -n $(params.NAMESPACE) --kubeconfig=./config"
+        kubectl apply -f ingress.yaml -n $(params.NAMESPACE) --kubeconfig=./config
+
+        echo "------- end -------"

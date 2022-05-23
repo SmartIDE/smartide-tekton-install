@@ -1,0 +1,56 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerTemplate
+metadata:
+  name: pipeline-template-k8s-ingress
+spec:
+  params:
+  - name: CLUSTER
+    description: the k8s cluster name (ws-xxx)
+    default: 
+  - name: NAMESPACE
+    description: the namespace of ingress
+    default: 
+  - name: USERNAME
+    description: the ingress basic auth username
+    default: 
+  - name: PASSWORD
+    description: the ingress basic auth password
+    default: 
+  - name: EXTERNALPORT
+    description: the ingress external port
+    default: 
+  - name: SERVICE
+    description: the ingress service name
+    default: 
+  - name: INTERNALPORT
+    description: the ingress internal port
+    default: 
+  - name: KUBECONFIG
+    description: the k8s cluster config
+    default: 
+
+  resourcetemplates:
+  - apiVersion: tekton.dev/v1beta1
+    kind: PipelineRun
+    metadata:
+      generateName: pipeline-k8s-ingress-run-
+    spec:
+      pipelineRef:
+        name: pipeline-k8s-ingress
+      params:
+      - name: CLUSTER
+        value: $(tt.params.CLUSTER)
+      - name: NAMESPACE
+        value: $(tt.params.NAMESPACE)
+      - name: USERNAME
+        value: $(tt.params.USERNAME)
+      - name: PASSWORD
+        value: $(tt.params.PASSWORD)
+      - name: EXTERNALPORT
+        value: $(tt.params.EXTERNALPORT)
+      - name: SERVICE
+        value: $(tt.params.SERVICE)
+      - name: INTERNALPORT
+        value: $(tt.params.INTERNALPORT)
+      - name: KUBECONFIG
+        value: $(tt.params.KUBECONFIG)
