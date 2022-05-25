@@ -12,14 +12,6 @@ spec:
       description: the namespace of ingress
       type: string
       default: "default"
-    - name: USERNAME
-      description: the ingress basic auth username
-      type: string
-      default: 
-    - name: PASSWORD
-      description: the ingress basic auth password
-      type: string
-      default: 
     - name: EXTERNALPORT
       description: the ingress external port
       type: string
@@ -36,6 +28,26 @@ spec:
       description: the k8s cluster config
       type: string
       default:
+    - name: AUTHTYPE
+      description: the ingress auth type ("none" | "basic" | "oauth")
+      type: string
+      default: 
+    - name: USERNAME
+      description: the ingress basic auth username
+      type: string
+      default: 
+    - name: PASSWORD
+      description: the ingress basic auth password
+      type: string
+      default: 
+    - name: SERVER_CALLBACK_URL
+      description: server callback url
+      type: string
+      default:   
+    - name: SERVER_TOKEN
+      description: server token
+      type: string
+      default: 
 
   tasks:
     - name: k8s-ingress
@@ -47,10 +59,6 @@ spec:
           value: $(params.CLUSTER)
         - name: NAMESPACE
           value: $(params.NAMESPACE)
-        - name: USERNAME
-          value: $(params.USERNAME)
-        - name: PASSWORD
-          value: $(params.PASSWORD)
         - name: EXTERNALPORT
           value: $(params.EXTERNALPORT)
         - name: SERVICE
@@ -59,3 +67,13 @@ spec:
           value: $(params.INTERNALPORT)
         - name: KUBECONFIG
           value: $(params.KUBECONFIG)
+        - name: AUTHTYPE
+          value: $(params.AUTHTYPE)
+        - name: USERNAME
+          value: $(params.USERNAME)
+        - name: PASSWORD
+          value: $(params.PASSWORD)
+        - name: SERVER_CALLBACK_URL
+          value: $(params.SERVER_CALLBACK_URL)
+        - name: SERVER_TOKEN
+          value: $(params.SERVER_TOKEN)

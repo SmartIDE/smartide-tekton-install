@@ -8,10 +8,6 @@ spec:
     value: $(body.CLUSTER)
   - name: NAMESPACE
     value: $(body.NAMESPACE)
-  - name: USERNAME
-    value: $(body.USERNAME)
-  - name: PASSWORD
-    value: $(body.PASSWORD)
   - name: EXTERNALPORT
     value: $(body.EXTERNALPORT)
   - name: SERVICE
@@ -20,3 +16,13 @@ spec:
     value: $(body.INTERNALPORT)
   - name: KUBECONFIG
     value: $(body.KUBECONFIG)
+  - name: AUTHTYPE
+    value: $(body.AUTHTYPE)
+  - name: USERNAME
+    value: $(body.USERNAME)
+  - name: PASSWORD
+    value: $(body.PASSWORD)
+  - name: SERVER_CALLBACK_URL
+    value: $(body.SERVER_CALLBACK_URL)
+  - name: SERVER_TOKEN
+    value: $(body.SERVER_TOKEN)

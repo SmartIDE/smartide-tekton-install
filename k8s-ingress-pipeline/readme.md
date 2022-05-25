@@ -10,12 +10,12 @@
 ``` bash
 cd k8s-ingress-pipeline
 
-kubectl apply -f ./aliyun/trigger.yaml
-kubectl apply -f ./aliyun/trigger-template.yaml
-kubectl apply -f ./aliyun/trigger-binding.yaml
-kubectl apply -f ./aliyun/trigger-event-listener.yaml
-kubectl apply -f ./aliyun/task-k8s-ingress.yaml
-kubectl apply -f ./aliyun/pipeline-k8s-ingress.yaml
+kubectl apply -f ./aliyun/1.trigger.yaml
+kubectl apply -f ./aliyun/2.trigger-binding.yaml
+kubectl apply -f ./aliyun/3.task-k8s-ingress.yaml
+kubectl apply -f ./aliyun/4.pipeline-k8s-ingress.yaml
+kubectl apply -f ./aliyun/5.trigger-template.yaml
+kubectl apply -f ./aliyun/6.trigger-event-listener.yaml
 ```
 
 
@@ -23,10 +23,10 @@ kubectl apply -f ./aliyun/pipeline-k8s-ingress.yaml
 ``` bash
 cd k8s-ingress-pipeline
 
-kubectl apply -f ./dockerhub/trigger.yaml
-kubectl apply -f ./dockerhub/trigger-template.yaml
-kubectl apply -f ./dockerhub/trigger-binding.yaml
-kubectl apply -f ./dockerhub/trigger-event-listener.yaml
-kubectl apply -f ./dockerhub/task-k8s-ingress.yaml
-kubectl apply -f ./dockerhub/pipeline-k8s-ingress.yaml
+kubectl apply -f ./dockerhub/1.trigger.yaml
+kubectl apply -f ./dockerhub/2.trigger-binding.yaml
+kubectl apply -f ./dockerhub/3.task-k8s-ingress.yaml
+kubectl apply -f ./dockerhub/4.pipeline-k8s-ingress.yaml
+kubectl apply -f ./dockerhub/5.trigger-template.yaml
+kubectl apply -f ./dockerhub/6.trigger-event-listener.yaml
 ```

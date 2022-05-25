@@ -1,0 +1,71 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerTemplate
+metadata:
+  name: pipeline-template-k8s-ingress
+spec:
+  params:
+    - name: CLUSTER
+      description: the k8s cluster name (ws-xxx)
+      default: "ws"
+    - name: NAMESPACE
+      description: the namespace of ingress
+      default: "default"
+    - name: EXTERNALPORT
+      description: the ingress external port
+      default:
+    - name: SERVICE
+      description: the ingress service name
+      default: 
+    - name: INTERNALPORT
+      description: the ingress internal port
+      default:
+    - name: KUBECONFIG
+      description: the k8s cluster config
+      default:
+    - name: AUTHTYPE
+      description: the ingress auth type ("none" | "basic" | "oauth")
+      default: 
+    - name: USERNAME
+      description: the ingress basic auth username
+      default: 
+    - name: PASSWORD
+      description: the ingress basic auth password
+      default: 
+    - name: SERVER_CALLBACK_URL
+      description: server callback url
+      default:   
+    - name: SERVER_TOKEN
+      description: server token
+      default: 
+
+  resourcetemplates:
+  - apiVersion: tekton.dev/v1beta1
+    kind: PipelineRun
+    metadata:
+      generateName: pipeline-k8s-ingress-run-
+    spec:
+      pipelineRef:
+        name: pipeline-k8s-ingress
+      params:
+      - name: CLUSTER
+        value: $(tt.params.CLUSTER)
+      - name: NAMESPACE
+        value: $(tt.params.NAMESPACE)
+      - name: EXTERNALPORT
+        value: $(tt.params.EXTERNALPORT)
+      - name: SERVICE
+        value: $(tt.params.SERVICE)
+      - name: INTERNALPORT
+        value: $(tt.params.INTERNALPORT)
+      - name: KUBECONFIG
+        value: $(tt.params.KUBECONFIG)
+      - name: AUTHTYPE
+        value: $(tt.params.AUTHTYPE)
+      - name: USERNAME
+        value: $(tt.params.USERNAME)
+      - name: PASSWORD
+        value: $(tt.params.PASSWORD)
+      - name: SERVER_CALLBACK_URL
+        value: $(tt.params.SERVER_CALLBACK_URL)
+      - name: SERVER_TOKEN
+        value: $(tt.params.SERVER_TOKEN)
