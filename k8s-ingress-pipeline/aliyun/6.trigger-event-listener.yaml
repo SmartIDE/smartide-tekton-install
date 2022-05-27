@@ -1,0 +1,13 @@
+---
+apiVersion: triggers.tekton.dev/v1beta1
+kind: EventListener
+metadata:
+  name: trigger-listener-k8s-ingress
+spec:
+  serviceAccountName: tekton-triggers-k8s-ingress-sa
+  triggers:
+    - name: trigger-k8s-ingress
+      bindings:
+        - ref: pipeline-binding-k8s-ingress
+      template:
+        ref: pipeline-template-k8s-ingress
