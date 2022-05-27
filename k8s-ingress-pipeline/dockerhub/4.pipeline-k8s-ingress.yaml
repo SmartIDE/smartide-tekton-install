@@ -4,6 +4,10 @@ metadata:
   name: pipeline-k8s-ingress
 spec:
   params:
+    - name: BASEDNSNAME
+      description: the base dns name of smartide server
+      type: string
+      default: "ws.smartide.cn"
     - name: CLUSTER
       description: the k8s cluster name (ws-xxx)
       type: string
@@ -55,6 +59,8 @@ spec:
         name: task-k8s-ingress
 
       params:
+        - name: BASEDNSNAME
+          value: $(params.BASEDNSNAME)
         - name: CLUSTER
           value: $(params.CLUSTER)
         - name: NAMESPACE

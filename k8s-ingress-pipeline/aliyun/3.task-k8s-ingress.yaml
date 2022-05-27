@@ -8,6 +8,10 @@ spec:
     Use this task to apply k8s ingress
 
   params:
+    - name: BASEDNSNAME
+      description: the base dns name of smartide server
+      type: string
+      default: "ws.smartide.cn"
     - name: CLUSTER
       description: the k8s cluster name (ws-xxx)
       type: string
@@ -120,6 +124,6 @@ spec:
         curl '$(params.SERVER_CALLBACK_URL)' \
         -H 'Content-Type: application/json' \
         -H 'x-token: $(params.SERVER_TOKEN)' \
-        --data-raw '{ "USERNAME": "$(params.USERNAME)", "CLUSTER": "$(params.CLUSTER)", "NAMESPACE": "$(params.NAMESPACE)", "EXTERNALPORT": "$(params.EXTERNALPORT)", "SERVICE": "$(params.SERVICE)", "INTERNALPORT": "$(params.INTERNALPORT)", "URL": "https://$(params.NAMESPACE)-$(params.SERVICE)-p$(params.EXTERNALPORT).$(params.CLUSTER).smartide.cn"}'
+        --data-raw '{ "USERNAME": "$(params.USERNAME)", "CLUSTER": "$(params.CLUSTER)", "NAMESPACE": "$(params.NAMESPACE)", "EXTERNALPORT": "$(params.EXTERNALPORT)", "SERVICE": "$(params.SERVICE)", "INTERNALPORT": "$(params.INTERNALPORT)", "URL": "https://$(params.NAMESPACE)-$(params.SERVICE)-p$(params.EXTERNALPORT).$(params.CLUSTER).$(params.BASEDNSNAME)"}'
         
         echo "------- end -------"

@@ -4,6 +4,8 @@ metadata:
   name: pipeline-binding-k8s-ingress
 spec:
   params:
+  - name: BASEDNSNAME
+    value: $(body.BASEDNSNAME)
   - name: CLUSTER
     value: $(body.CLUSTER)
   - name: NAMESPACE
