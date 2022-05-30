@@ -1,0 +1,13 @@
+---
+apiVersion: triggers.tekton.dev/v1beta1
+kind: EventListener
+metadata:
+  name: trigger-listener-k8s-ssh
+spec:
+  serviceAccountName: tekton-triggers-k8s-ssh-sa
+  triggers:
+    - name: trigger-k8s-ssh
+      bindings:
+        - ref: pipeline-binding-k8s-ssh
+      template:
+        ref: pipeline-template-k8s-ssh

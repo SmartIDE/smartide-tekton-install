@@ -1,0 +1,68 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: task-k8s-ssh
+
+spec:
+  description: >-
+    Use this task to apply k8s ssh
+  params:
+    - name: BASEDNSNAME
+      description: the base dns name of smartide server
+      type: string
+      default: "ws.smartide.cn"
+    - name: CLUSTER
+      description: the k8s cluster name (ws-xxx)
+      type: string
+      default: "ws"
+    - name: SSHCONFIG
+      description: the ssh list config string
+      type: string
+      default:
+    - name: KUBECONFIG
+      description: the k8s cluster config
+      type: string
+      default:
+    - name: SERVER_CALLBACK_URL
+      description: server callback url
+      type: string
+      default: ""
+    - name: SERVER_TOKEN
+      description: server token
+      type: string
+      default: ""
+
+  steps:
+    - name: k8s-ssh
+      image: registry.cn-hangzhou.aliyuncs.com/smartide/smartide-tekton-ingress:2
+      script: |
+        #!/bin/bash
+        echo "------- k8s ssh apply start -------"
+        kubectl version
+        echo "[kubeconfig] write kubeconfig file"
+        echo "$(params.KUBECONFIG)" >> ./config
+        echo "[kubeconfig] content:"
+        cat ./config
+
+        echo "[configmap] create configmap file"
+        echo "apiVersion: v1" >> configmap.yaml
+        echo "kind: ConfigMap" >> configmap.yaml
+        echo "metadata:" >> configmap.yaml
+        echo "  name: ingress-nginx-tcp" >> configmap.yaml
+        echo "  namespace: ingress-nginx" >> configmap.yaml
+        echo "data:" >> configmap.yaml
+        echo "$(params.SSHCONFIG)" >> configmap.yaml
+
+        cat configmap.yaml
+        echo "[configmap] kubectl apply config map"
+        echo "[bash] kubectl apply -f configmap.yaml -n ingress-nginx --kubeconfig=./config"
+        kubectl apply -f configmap.yaml -n ingress-nginx --kubeconfig=./config
+        
+        echo "[callback] callback server to postback port address"
+        
+        curl '$(params.SERVER_CALLBACK_URL)' \
+        -H 'Content-Type: application/json' \
+        -H 'x-token: $(params.SERVER_TOKEN)' \
+        --data-raw '{ "BASEDNSNAME": "$(params.BASEDNSNAME)", "CLUSTER": "$(params.CLUSTER)", "SSHCONFIG": "$(params.SSHCONFIG)"}'
+        
+        echo "------- end -------"
