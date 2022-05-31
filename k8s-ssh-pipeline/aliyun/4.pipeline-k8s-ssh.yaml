@@ -1,0 +1,49 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: pipeline-k8s-ssh
+spec:
+  params:
+    - name: BASEDNSNAME
+      description: the base dns name of smartide server
+      type: string
+      default: "ws.smartide.cn"
+    - name: CLUSTER
+      description: the k8s cluster name (ws-xxx)
+      type: string
+      default: "ws"
+    - name: SSHCONFIG
+      description: the ssh list config string
+      type: string
+      default:
+    - name: KUBECONFIG
+      description: the k8s cluster config
+      type: string
+      default:
+    - name: SERVER_CALLBACK_URL
+      description: server callback url
+      type: string
+      default: ""
+    - name: SERVER_TOKEN
+      description: server token
+      type: string
+      default: ""
+
+  tasks:
+    - name: k8s-ssh
+      taskRef:
+        name: task-k8s-ssh
+
+      params:
+        - name: BASEDNSNAME
+          value: $(params.BASEDNSNAME)
+        - name: CLUSTER
+          value: $(params.CLUSTER)
+        - name: SSHCONFIG
+          value: $(params.SSHCONFIG)
+        - name: KUBECONFIG
+          value: $(params.KUBECONFIG)
+        - name: SERVER_CALLBACK_URL
+          value: $(params.SERVER_CALLBACK_URL)
+        - name: SERVER_TOKEN
+          value: $(params.SERVER_TOKEN)
