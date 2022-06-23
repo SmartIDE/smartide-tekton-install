@@ -79,7 +79,7 @@ spec:
         elif [ "$(params.COMMAND)" == "k8s" ]; then 
           echo "smartide k8s running"
           echo "smartide start $(params.ARGS) --debug --mode server --serverhost '$(params.SERVER_HOST)' --serverworkspaceid '$(params.SERVER_WORK_SPACE_ID)' --serverusername '$(params.SERVER_USER_NAME)' --servertoken '$(params.SERVER_TOKEN)' "
-          smartide start $(params.ARGS) --debug --mode server --serverhost '$(params.SERVER_HOST)' --serverworkspaceid '$(params.SERVER_WORK_SPACE_ID)' --serverusername '$(params.SERVER_USER_NAME)' --servertoken '$(params.SERVER_TOKEN)'
+          smartide start $(params.ARGS) --debug --mode server --serverhost '$(params.SERVER_HOST)' --serverworkspaceid '$(params.SERVER_WORK_SPACE_ID)' --serverusername '$(params.SERVER_USER_NAME)' --servertoken '$(params.SERVER_TOKEN)' --serverownerguid '$(params.SERVER_USER_GUID)'
         else
           echo "smartide $(params.COMMAND) $(params.SERVER_WORK_SPACE_NO) running"
 
