@@ -28,18 +28,6 @@ spec:
       description: git clone url
       type: string
       default:       
-    - name: PUBLIC_URL
-      description: enable/disable public url
-      type: string
-      default: 
-    - name: RESOURCE_ID
-      description: resource id
-      type: string
-      default: 
-    - name: PORTS
-      description: ssh ports
-      type: string
-      default:    
 
     - name: SERVER_WORK_SPACE_ID
       description: 服务端工作区ID
@@ -84,12 +72,6 @@ spec:
           value: $(params.SSH_USER_PASSWORD)
         - name: GIT_CLONE_URL
           value: $(params.GIT_CLONE_URL)
-        - name: PUBLIC_URL
-          value: $(params.PUBLIC_URL)
-        - name: RESOURCE_ID
-          value: $(params.RESOURCE_ID)
-        - name: PORTS
-          value: $(params.PORTS)
 
         - name: SERVER_WORK_SPACE_ID
           value: $(params.SERVER_WORK_SPACE_ID)
