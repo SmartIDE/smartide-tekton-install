@@ -1,7 +1,7 @@
 <!--
  * @Date: 2022-03-10 10:48:37
  * @LastEditors: Jason Chen
- * @LastEditTime: 2022-03-17 11:21:41
+ * @LastEditTime: 2022-06-30 22:13:40
  * @FilePath: /smartide-tekton-install/smartide-pipeline/readme.md
 -->
 
@@ -19,6 +19,8 @@ kubectl apply -f ./aliyun/trigger-event-listener.yaml
 # release 版本 kubectl apply -f ./aliyun/task-smartide-cli-release.yaml
 kubectl apply -f ./aliyun/task-smartide-cli-dev.yaml
 kubectl apply -f ./aliyun/pipeline-smartide-cli.yaml
+
+cd -
 ```
 
 
