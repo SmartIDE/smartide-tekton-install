@@ -25,6 +25,15 @@ spec:
   - name: GIT_BRANCH
     description: The git revision
     default: 
+  - name: PUBLIC_URL
+    description: enable/disable public url
+    default: 
+  - name: RESOURCE_ID
+    description: resource id
+    default: 
+  - name: PORTS
+    description: ssh ports
+    default:  
 
   - name: SERVER_WORK_SPACE_ID
     description: 服务端工作区ID
@@ -66,6 +75,12 @@ spec:
         value: $(tt.params.SSH_USER_PASSWORD)
       - name: GIT_CLONE_URL
         value: $(tt.params.GIT_CLONE_URL)
+      - name: PUBLIC_URL
+        value: $(tt.params.PUBLIC_URL)
+      - name: RESOURCE_ID
+        value: $(tt.params.RESOURCE_ID)
+      - name: PORTS
+        value: $(tt.params.PORTS)
 
       - name: SERVER_WORK_SPACE_ID
         value: $(tt.params.SERVER_WORK_SPACE_ID)
