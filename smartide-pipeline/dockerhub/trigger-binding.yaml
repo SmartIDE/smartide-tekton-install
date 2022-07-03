@@ -20,12 +20,6 @@ spec:
     value: $(body.GIT_CLONE_URL)
   - name: GIT_BRANCH
     value: $(body.GIT_BRANCH)
-  - name: PUBLIC_URL
-    value: $(body.PUBLIC_URL)
-  - name: RESOURCE_ID
-    value: $(body.RESOURCE_ID)
-  - name: PORTS
-    value: $(body.PORTS)
 
   - name: SERVER_WORK_SPACE_ID
     value: $(body.SERVER_WORK_SPACE_ID)
